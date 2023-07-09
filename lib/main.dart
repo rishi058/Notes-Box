@@ -38,20 +38,20 @@ void main() async {
   runApp(const MyApp());
 }
 
+double getWidth(BuildContext ctx){
+  var width = MediaQuery.of(ctx).size.height;
+  var currOr = MediaQuery.of(ctx).orientation;
+  var width2 = MediaQuery.of(ctx).size.width;
+  if(currOr==Orientation.landscape && width<480){  // for phone orientation
+    return width2/1.5;
+  }
+  else{
+    return 500;
+  }
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  double getWidth(BuildContext ctx){
-    var width = MediaQuery.of(ctx).size.height;
-    var currOr = MediaQuery.of(ctx).orientation;
-    var width2 = MediaQuery.of(ctx).size.width;
-    if(currOr==Orientation.landscape && width<480){  // for phone orientation
-      return width2/1.5;
-    }
-    else{
-      return 600;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,15 +59,11 @@ class MyApp extends StatelessWidget {
       builder: (context, child) => ResponsiveWrapper.builder(
           BouncingScrollWrapper.builder(context, child!),
           maxWidth: getWidth(context),
-          minWidth: 300,
+          minWidth: MediaQuery.of(context).size.width,
           defaultScale: true,
           breakpoints: [
             const ResponsiveBreakpoint.autoScale(350, name: MOBILE),
-            const ResponsiveBreakpoint.autoScale(450, name: MOBILE),   // widths...
-            const ResponsiveBreakpoint.resize(800, name: TABLET),
-            // const ResponsiveBreakpoint.autoScale(1000, name: TABLET),
-            // const ResponsiveBreakpoint.resize(1100, name: DESKTOP),  // my desktop width=1500..
-            // const ResponsiveBreakpoint.autoScale(2460, name: "4K"),
+            const ResponsiveBreakpoint.autoScale(450, name: MOBILE),
           ],
           background: Container(color: Colors.black)),
       home: const MyApp2(),

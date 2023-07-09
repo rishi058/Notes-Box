@@ -43,6 +43,7 @@ Widget myDrawer(BuildContext context){
               InkWell(
                   onTap: (){Get.toNamed('about-us-screen');},
                   child: aboutUsButton()),
+              SizedBox(height: 7.h),
             ],
           ),
         ),

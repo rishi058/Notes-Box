@@ -90,7 +90,7 @@ Widget menuButton(){
 Widget logOutButton(){
   return Container(
     height: 6.h,
-    width: 30.h,
+    margin: EdgeInsets.symmetric(horizontal: 2.h),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(1.25.h),
       color: Colors.grey.withOpacity(0.25),
@@ -111,7 +111,7 @@ Widget logOutButton(){
 Widget aboutUsButton(){
   return Container(
     height: 6.h,
-    width: 30.h,
+    margin: EdgeInsets.symmetric(horizontal: 2.h),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(1.25.h),
       color: Colors.grey.withOpacity(0.25),

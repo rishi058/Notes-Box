@@ -24,13 +24,12 @@ Widget customBox(int index, Note temp){
         Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Flexible(
-            child: Container(
-              margin: EdgeInsets.only(left: 1.h, right: 1.h),
+          Container(
+            margin: EdgeInsets.only(left: 1.h, right: 1.h),
+            child: FittedBox(
               child: Text(
                 trimTitle(temp.title),
                 textAlign: TextAlign.left,
-                maxLines: 6,
                 style: TextStyle(
                   overflow: TextOverflow.fade,
                   color: Colors.black,
@@ -40,9 +39,9 @@ Widget customBox(int index, Note temp){
               ),
             ),
           ),
-          Flexible(
-            child: Container(
-              margin: EdgeInsets.only(bottom: 2.5.h, left: 1.h, right: 1.h),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(left: 1.h, right: 1.h, bottom: 2.h),
               child: Text(
                 temp.body,
                 style: TextStyle(

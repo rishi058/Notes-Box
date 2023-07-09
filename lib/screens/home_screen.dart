@@ -29,7 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
   late EditNoteData editInfo;
 
   void setData() async {
-    Get.put(UserNotesInstance());
     db = Get.find();
     await db.fetch(context).then((value){
       if(value){
@@ -42,9 +41,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
+    Get.put(UserNotesInstance());
+    setData();
     Get.put(EditNoteData());
     editInfo = Get.find();
-    setData();
     super.initState();
   }
 

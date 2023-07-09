@@ -36,12 +36,12 @@ class SizerUtil {
     figmaWidth = 375;
     figmaWidth = 812;
 
-    // if(kDebugMode){
-    //   print('width==');
-    //   print(width);
-    //   print('height == ');
-    //   print(width*2);
-    // }
+    if(kDebugMode){
+      print('width==');
+      print(width);
+      print('height == ');
+      print(width*2);
+    }
     // late double AR = width/height;
     //
     // if(AR<=0.45){

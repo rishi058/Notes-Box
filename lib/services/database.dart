@@ -74,23 +74,26 @@ class Database{
 
   Future<Pair<bool, List<Note>>> fetchNotes(BuildContext ctx) async {
     List<Note> res = [];
-    try{
-      final CollectionReference myNotes = FirebaseFirestore.instance.collection(userId);
-      QuerySnapshot querySnapshot = await myNotes.get();
-      final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
+    final CollectionReference myNotes = FirebaseFirestore.instance.collection(userId);
+    QuerySnapshot querySnapshot;
 
-      for(int i=0; i<allData.length; i++){
-        Map<String, dynamic> note = allData[i] as Map<String, dynamic>;
-        if(note['id']==null){continue;}
-        Note temp = Note(id_: note['id'], title_: note['title'], date_: note['date'], body_: note['body'], color_: note['color']);
-        res.add(temp);
-      }
-      return Pair<bool, List<Note>>(true, res);
+    try{
+      querySnapshot = await myNotes.get();
     }
     catch (e){
       showSnackBar(ctx, 'Something Went Wrong! Unable to fetch.', Colors.redAccent);
       return const Pair<bool, List<Note>>(false, []);
     }
+
+    final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
+
+    for(int i=0; i<allData.length; i++){
+      Map<String, dynamic> note = allData[i] as Map<String, dynamic>;
+      if(note['id']==null){continue;}
+      Note temp = Note(id_: note['id'], title_: note['title'], date_: note['date'], body_: note['body'], color_: note['color']);
+      res.add(temp);
+    }
+    return Pair<bool, List<Note>>(true, res);
 
   }
 
