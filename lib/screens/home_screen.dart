@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:notes_box/Sizer/sizer.dart';
 import 'package:get/get.dart';
-import 'package:notes_box/models/edit_note_injection.dart';
+import 'package:notes_box/controller/edit_note_injection.dart';
 import 'package:notes_box/services/helper.dart';
 import 'package:notes_box/styling/typography.dart';
 import 'package:notes_box/widgets/empty_box.dart';
 import 'package:notes_box/widgets/retry_widget.dart';
 import 'package:notes_box/widgets/small_buttons.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import '../controller/user_notes_injection.dart';
 import '../models/note_model.dart';
 import '../styling/colors.dart';
 import 'drawer_screen.dart';

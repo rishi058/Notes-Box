@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:notes_box/Sizer/sizer.dart';
 import 'package:get/get.dart';
-import 'package:notes_box/models/edit_note_injection.dart';
+import 'package:notes_box/controller/edit_note_injection.dart';
+import 'package:notes_box/controller/result_note_injection.dart';
 
+import '../controller/user_notes_injection.dart';
 import '../models/note_model.dart';
 import '../services/helper.dart';
 import '../styling/colors.dart';
@@ -19,12 +21,10 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
 
-  // String query = "";
-
-  List<Note> resultNotes = [];
-
   void searchNotes(String searchQuery) {
+
     final queryLowerCase = searchQuery.toLowerCase();
+
     List<Note> temp =  db.myNotes.where((note) {
       final titleLowerCase = note.title.toLowerCase();
       final bodyLowerCase = note.body.toLowerCase();
@@ -33,18 +33,21 @@ class _SearchPageState extends State<SearchPage> {
           bodyLowerCase.contains(queryLowerCase) ||
           dateLowerCase.contains(queryLowerCase);
     }).toList();
-    setState(() {
-      resultNotes = temp;
-    });
+
+    resultNotes.updateResult(temp);
+
   }
 
   late UserNotesInstance db;
   late EditNoteData editInfo;
+  late ResultNotes resultNotes;
 
   @override
   void initState() {
     db = Get.find();
     editInfo = Get.find();
+    Get.put(ResultNotes());
+    resultNotes = Get.find();
     super.initState();
   }
 
@@ -64,7 +67,6 @@ class _SearchPageState extends State<SearchPage> {
           Expanded(
             child: TextField(
               onChanged: (query){
-                // print(query);
                 searchNotes(query);
               },
               decoration: const InputDecoration(
@@ -101,7 +103,9 @@ class _SearchPageState extends State<SearchPage> {
           searchBar(),
           SizedBox(height: 5.h),
           Expanded(
-            child: Padding(
+            child:
+                Obx(() =>
+            Padding(
                 padding: EdgeInsets.symmetric(horizontal: 0.7.h),
                 child:
                 CustomScrollView(
@@ -116,17 +120,17 @@ class _SearchPageState extends State<SearchPage> {
                       itemBuilder: (BuildContext context, int index) {
                         return InkWell(
                             onTap: (){
-                              editInfo.setValue(index_: index, data_: db.myNotes[index]);
+                              editInfo.setValue(index_: index, data_: resultNotes.myNotes[index]);
                               Get.toNamed('edit-screen');
                             },
-                            child: customBox(index, resultNotes[index])); // Build the grid item
+                            child: customBox(index, resultNotes.myNotes[index])); // Build the grid item
                       },
-                      itemCount: resultNotes.length,
+                      itemCount: resultNotes.myNotes.length,
                     ),
                   ],
                 ),
             ),
-          ),
+          ),),
         ],
       ),
     );

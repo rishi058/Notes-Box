@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'note_model.dart';
+import '../models/note_model.dart';
 
 class EditNoteData extends GetxController {
   RxInt index = 0.obs;

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:notes_box/Sizer/sizer.dart';
 import 'package:get/get.dart';
-import 'package:notes_box/models/edit_note_injection.dart';
+import 'package:notes_box/controller/edit_note_injection.dart';
 import 'package:notes_box/models/note_model.dart';
 import 'package:notes_box/styling/typography.dart';
 import 'package:notes_box/widgets/delete_dialog.dart';
 import 'package:notes_box/widgets/snackbar.dart';
+import '../controller/user_notes_injection.dart';
 import '../services/helper.dart';
 import '../styling/colors.dart';
 import '../widgets/small_buttons.dart';
