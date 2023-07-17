@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:notes_box/Sizer/sizer.dart';
 import 'package:get/get.dart';
@@ -9,7 +10,6 @@ import 'package:notes_box/widgets/retry_widget.dart';
 import 'package:notes_box/widgets/small_buttons.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import '../controller/user_notes_injection.dart';
-import '../models/note_model.dart';
 import '../styling/colors.dart';
 import 'drawer_screen.dart';
 import '../widgets/notes_box.dart';
@@ -42,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
+    print(FirebaseAuth.instance.currentUser);
     Get.put(UserNotesInstance());
     setData();
     Get.put(EditNoteData());

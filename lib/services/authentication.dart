@@ -22,11 +22,10 @@ class Authentication {
 
         user = userCredential.user;
       } catch (e) {
-        if (kDebugMode) {
-          print(e);
-        }
+        showSnackBar(context, e.toString(), Colors.redAccent);
       }
-    } else {
+    }
+    else {
       final GoogleSignIn googleSignIn = GoogleSignIn();
       GoogleSignInAccount? googleSignInAccount;
 
@@ -51,11 +50,8 @@ class Authentication {
           await auth.signInWithCredential(credential);
 
           user = userCredential.user;
-        } on FirebaseAuthException catch (e) {
-          if(context.mounted){
-            showSnackBar(context, e.toString(), Colors.redAccent);
-          }
-        } catch (e) {
+        }
+        catch (e) {
           if(context.mounted){
             showSnackBar(context, e.toString(), Colors.redAccent);
           }
@@ -83,5 +79,36 @@ class Authentication {
       showSnackBar(context, 'Error signing out. Try again.', Colors.redAccent);
     }
   }
+
+  static switchAccounts(BuildContext context) async {
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+
+    try{
+      if (!kIsWeb) {
+        await googleSignIn.signOut();
+      }
+      setLoginFalse();
+    }
+    catch(e){
+      showSnackBar(context, e.toString(), Colors.redAccent);
+      return;
+    }
+
+    if(context.mounted){
+      Authentication.signInWithGoogle(context).then((value) async {
+        if(value==false){
+          await googleSignIn.signInSilently().whenComplete(() {
+            setLoginTrue();
+            Navigator.of(context).pushNamedAndRemoveUntil('home-screen', (route) => false);
+          });
+        }
+        else{
+          setLoginTrue();
+          Navigator.of(context).pushNamedAndRemoveUntil('home-screen', (route) => false);
+        }
+      });
+    }
+  }
+
 
 }

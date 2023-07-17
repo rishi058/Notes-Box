@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:notes_box/Sizer/sizer.dart';
