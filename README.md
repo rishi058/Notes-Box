@@ -1,6 +1,8 @@
 
 # Notes Box (Note taking App).
 
+### Download from Playstore - (Click Here)[https://play.google.com/store/apps/details?id=com.devwizards.notes_box]
+
 ### Tech Stack :-
     1. Flutter SDK + Dart Language (For Frontend & Backend).
     2. Firebase (For Database).
@@ -16,3 +18,4 @@
     7. Scalable Directory Structure.
 
 ### User-Interface and Control-Flow :-
+![ok](https://github.com/rishi058/Notes-Box/assets/97884033/a6f30192-c0b2-4ce1-8279-c6b19eec5227)
