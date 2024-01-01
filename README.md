@@ -1,16 +1,18 @@
-# notes_box
 
-A new Flutter project.
+# Notes Box (Note taking App).
 
-## Getting Started
+### Tech Stack :-
+    1. Flutter SDK + Dart Language (For Frontend & Backend).
+    2. Firebase (For Database).
+    3. Google Sign In (For Authentication).
 
-This project is a starting point for a Flutter application.
+### Features :-
+    1. CRUD functionality.
+    2. Implemented staggred grid view for better User Interface.
+    3. Used GetX for State managment.
+    4. Used Get-Storage for storing small key-value pair info to local storage.
+    5. Designed a vibrant, dark and colorful UI for a visually appealing experience.
+    6. Utilized dependency injection to enhance code maintainability and testability.
+    7. Scalable Directory Structure.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### User-Interface and Control-Flow :-
