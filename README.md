@@ -1,7 +1,7 @@
 
 # Notes Box (Note taking App).
 
-### Download from Playstore - (Click Here)[https://play.google.com/store/apps/details?id=com.devwizards.notes_box]
+### [View on playstore](https://play.google.com/store/apps/details?id=com.devwizards.notes_box)
 
 ### Tech Stack :-
     1. Flutter SDK + Dart Language (For Frontend & Backend).
